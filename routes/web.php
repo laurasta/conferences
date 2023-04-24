@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/conferences', [ConferenceController::class, 'index'])->name('conferences.index');
+Route::get('/conferences', [App\Http\Controllers\ConferenceController::class, 'index'])->name('conferences.index');
+Route::middleware('auth')->group(function () {
+    // Routes for managing conference records go here
+});
+
