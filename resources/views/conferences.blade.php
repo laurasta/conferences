@@ -8,8 +8,8 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Date</th>
+                <th>Address</th>
             </tr>
             </thead>
             <tbody>
@@ -17,10 +17,18 @@
                 <tr>
                     <td>{{ $conference->title }}</td>
                     <td>{{ $conference->description }}</td>
-                    <td>{{ $conference->start_date }}</td>
-                    <td>{{ $conference->end_date }}</td>
+                    <td>{{ $conference->date }}</td>
+                    <td>{{ $conference->address }}</td>
+                    <td>
+                        <form method="POST" action="{{ route('conferences.destroy', $conference->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
+
             </tbody>
         </table>
     </div>
