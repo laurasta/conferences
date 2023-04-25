@@ -1,18 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::middleware('auth')->group(function () {
+    Route::get('/conferences/{id}/edit', [App\Http\Controllers\ConferenceController::class, 'edit'])->name('conferences.edit');
+    Route::put('/conferences/{id}', [App\Http\Controllers\ConferenceController::class, 'update'])->name('conferences.update');
+    Route::delete('/conferences/{id}', [App\Http\Controllers\ConferenceController::class, 'destroy'])->name('conferences.destroy');
+});
 
+// Routes accessible to everyone
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,15 +24,5 @@ Route::get('/conferences/create', [App\Http\Controllers\ConferenceController::cl
 //handle the submission of the form
 Route::post('/conferences', [App\Http\Controllers\ConferenceController::class, 'store'])->name('conferences.store');
 
-Route::get('/conferences/{conference}/edit', [App\Http\Controllers\ConferenceController::class, 'edit'])->name('conferences.edit');
-Route::put('/conferences/{conference}', [App\Http\Controllers\ConferenceController::class, 'update'])->name('conferences.update');
 Route::get('/conferences/{id}', [App\Http\Controllers\ConferenceController::class, 'show'])->name('conferences.show');
-
-Route::delete('/conferences/{id}', [App\Http\Controllers\ConferenceController::class, 'destroy'])->name('conferences.destroy');
-
-
-Route::middleware('auth')->group(function () {
-    // Routes for managing conference records go here
-});
-
 

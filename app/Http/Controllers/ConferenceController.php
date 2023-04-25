@@ -14,6 +14,11 @@ class ConferenceController extends Controller
         return view('conferences', compact('conferences'));
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         return view('conferences.create');
@@ -21,11 +26,12 @@ class ConferenceController extends Controller
 
     public function edit(Conference $conference)
     {
-        return view('conferences.edit', compact('conference'));
+        return view('conferences.edit', ['conference' => $conference]);
     }
 
-    public function update(Request $request, Conference $conference)
+    public function update($id, Request $request)
     {
+        $conference = Conference::findOrFail($id);
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
@@ -35,7 +41,7 @@ class ConferenceController extends Controller
 
         $conference->update($validatedData);
 
-        return redirect()->route('conferences.show', $conference);
+        return redirect()->route('conferences.show', $conference->id)->with('success', 'Conference updated successfully.');
     }
 
     public function show($id)
@@ -70,7 +76,7 @@ class ConferenceController extends Controller
 
         Conference::create($data);
 
-        return redirect()->route('conferences.index');
+        return redirect()->route('conferences.index')->with('success', 'Conference created successfully.');
     }
 
 }

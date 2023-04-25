@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1>Conferences</h1>
+        <h1>{{ trans('messages.conferences') }}</h1>
         <table class="table">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Address</th>
+                <th>{{ trans('messages.title') }}</th>
+                <th>{{ trans('messages.description') }}</th>
+                <th>{{ trans('messages.date') }}</th>
+                <th>{{ trans('messages.address') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -23,8 +23,11 @@
                         <form method="POST" action="{{ route('conferences.destroy', $conference->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">{{ trans('messages.delete') }}</button>
                         </form>
+                    </td>
+                    <td>
+                        <a href="{{ route('conferences.edit', $conference->id) }}" class="btn btn-primary">{{ trans('messages.edit') }}</a>
                     </td>
                 </tr>
             @endforeach

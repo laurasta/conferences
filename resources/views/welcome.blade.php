@@ -17,22 +17,22 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">{{ trans('messages.home') }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/conferences') }}">Conferences</a>
+                <a class="nav-link" href="{{ url('/conferences') }}">{{ trans('messages.conferences') }}</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <div class="jumbotron">
-    <h1 class="display-4">Welcome to the Conference Management System</h1>
-    <p class="lead">This system allows you to manage and view information about upcoming conferences.</p>
+    <h1 class="display-4">{{ trans('messages.welcome') }}</h1>
+    <p class="lead">{{ trans('messages.purpose') }}</p>
     <hr class="my-4">
-    <p>Please log in to configure conference details or register to create an account.</p>
-    <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">Log in</a>
-    <a class="btn btn-secondary btn-lg" href="{{ route('register') }}" role="button">Register</a>
+    <p>{{ trans('messages.roles') }}</p>
+    <a class="btn btn-primary btn-lg" href="{{ route('login') }}" role="button">{{ trans('messages.login') }}</a>
+    <a class="btn btn-secondary btn-lg" href="{{ route('register') }}" role="button">{{ trans('messages.register') }}</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
